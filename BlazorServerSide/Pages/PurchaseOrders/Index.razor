@@ -1,0 +1,44 @@
+﻿@page "/purchaseorder"
+@inject PurchaseOrderService purchaseOrderService
+
+
+<h3>Purchase Orders</h3>
+
+@if (purchaseOrders == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>PO No.</th>
+                <th>PO Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var purchaseOrder in purchaseOrders)
+                {
+            <tr>
+                <td>@purchaseOrder.PurchaseOrderId</td>
+                <td>@purchaseOrder.PurchaseOrderDate.ToShortDateString()</td>
+            </tr>
+                }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<PurchaseOrder> purchaseOrders;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Load();
+    }
+
+    protected async Task Load()
+    {
+        purchaseOrders = await purchaseOrderService.GetPurchaseOrdersAsync();
+    }
+}
