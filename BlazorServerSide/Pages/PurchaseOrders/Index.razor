@@ -19,12 +19,12 @@ else
         </thead>
         <tbody>
             @foreach (var purchaseOrder in purchaseOrders)
-                {
-            <tr>
-                <td>@purchaseOrder.PurchaseOrderId</td>
-                <td>@purchaseOrder.PurchaseOrderDate.ToShortDateString()</td>
-            </tr>
-                }
+            {
+                <tr>
+                    <td>@purchaseOrder.PurchaseOrderId</td>
+                    <td>@purchaseOrder.PurchaseOrderDate.ToShortDateString()</td>
+                </tr>
+            }
         </tbody>
     </table>
 }
